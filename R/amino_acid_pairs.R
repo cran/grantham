@@ -22,9 +22,9 @@
 #' amino_acid_pairs(keep_self = FALSE)
 #'
 #' # Generate specific combinations of Ser against Ala and Trp.
-#' amino_acid_pairs(x = 'Ser', y = c('Ala', 'Trp'))
-#' @md
-#' @importFrom rlang .data
+#' amino_acid_pairs(x = "Ser", y = c("Ala", "Trp"))
+#'
+#' @importFrom dplyr .data
 #' @export
 amino_acid_pairs <-
   function(x = amino_acids(),
@@ -32,29 +32,38 @@ amino_acid_pairs <-
            keep_self = TRUE,
            keep_duplicates = TRUE,
            keep_reverses = TRUE) {
-
-    if(!all_amino_acids(x))
-      stop('`x` must be a vector of three-letter code amino acids')
-
-    if (!all_amino_acids(y))
-      stop('`y` must be a vector of three-letter code amino acids'
-      )
-
-  tbl <- tidyr::expand_grid(x = x, y = y)
-  tbl <- `if`(keep_self, tbl, dplyr::filter(tbl, x != y))
-  tbl <- `if`(keep_duplicates, tbl, dplyr::distinct(tbl))
-
-  tbl <-
-    if (keep_reverses) {
-      tbl # do nothing
-    } else {
-      tbl %>%
-        dplyr::rowwise() %>%
-        dplyr::mutate(key = paste(sort(c(x, y)), collapse = '-')) %>%
-        dplyr::ungroup() %>%
-        dplyr::distinct(.data$key, .keep_all = TRUE) %>%
-        dplyr::select(-'key')
+    if (!all_amino_acids(x)) {
+      stop("`x` must be a vector of three-letter code amino acids")
     }
 
-  return(tbl)
-}
+    if (!all_amino_acids(y)) {
+      stop("`y` must be a vector of three-letter code amino acids")
+    }
+
+    # tbl <- tidyr::expand_grid(x = x, y = y)
+    tbl <- expand.grid(
+      y = y,
+      x = x,
+      KEEP.OUT.ATTRS = FALSE,
+      stringsAsFactors = FALSE
+    ) |>
+      tibble::as_tibble() |>
+      dplyr::relocate("x", "y")
+
+    tbl <- `if`(keep_self, tbl, dplyr::filter(tbl, x != y))
+    tbl <- `if`(keep_duplicates, tbl, dplyr::distinct(tbl))
+
+    tbl <-
+      if (keep_reverses) {
+        tbl # do nothing
+      } else {
+        tbl |>
+          dplyr::rowwise() |>
+          dplyr::mutate(key = paste(sort(c(x, y)), collapse = "-")) |>
+          dplyr::ungroup() |>
+          dplyr::distinct(.data$key, .keep_all = TRUE) |>
+          dplyr::select(-"key")
+      }
+
+    return(tbl)
+  }

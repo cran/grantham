@@ -7,10 +7,12 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/grantham)](https://CRAN.R-project.org/package=grantham)
+[![R-CMD-check](https://github.com/patterninstitute/grantham/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/patterninstitute/grantham/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of `{grantham}` is to provide a minimal set of routines to
-calculate the Grantham distance<sup>[1](#1)</sup>.
+calculate the Grantham distance ([Grantham
+(1974)](https://doi.org/10.1126/science.185.4154.862)).
 
 The Grantham distance attempts to provide a proxy for the evolutionary
 distance between two amino acids based on three key side chain chemical
@@ -27,13 +29,6 @@ Install `{grantham}` from CRAN:
 install.packages("grantham")
 ```
 
-You can install the development version of `{grantham}` like so:
-
-``` r
-# install.packages("remotes")
-remotes::install_github("maialab/grantham")
-```
-
 ## Usage
 
 Grantham distance between two amino acids:
@@ -41,7 +36,7 @@ Grantham distance between two amino acids:
 ``` r
 library(grantham)
 
-grantham_distance(x = 'Ser', y = 'Phe')
+grantham_distance(x = "Ser", y = "Phe")
 #> # A tibble: 1 × 3
 #>   x     y         d
 #>   <chr> <chr> <dbl>
@@ -52,7 +47,7 @@ The function `grantham_distance()` is vectorised with amino acids being
 matched element-wise to form pairs for comparison:
 
 ``` r
-grantham_distance(x = c('Ser', 'Arg'), y = c('Phe', 'Leu'))
+grantham_distance(x = c("Ser", "Arg"), y = c("Phe", "Leu"))
 #> # A tibble: 2 × 3
 #>   x     y         d
 #>   <chr> <chr> <dbl>
@@ -68,7 +63,7 @@ to the length of the other.
 
 ``` r
 # `'Ser'` is recycled to match the length of the second vector, i.e. 3.
-grantham_distance(x = 'Ser', y = c('Phe', 'Leu', 'Arg'))
+grantham_distance(x = "Ser", y = c("Phe", "Leu", "Arg"))
 #> # A tibble: 3 × 3
 #>   x     y         d
 #>   <chr> <chr> <dbl>
@@ -96,7 +91,7 @@ aa_pairs
 #>  8 Ser   Gly  
 #>  9 Ser   Ile  
 #> 10 Ser   Phe  
-#> # … with 390 more rows
+#> # ℹ 390 more rows
 ```
 
 And now calculate all Grantham distances for all pairs `aa_pairs`:
@@ -116,7 +111,7 @@ grantham_distance(x = aa_pairs$x, y = aa_pairs$y)
 #>  8 Ser   Gly      56
 #>  9 Ser   Ile     142
 #> 10 Ser   Phe     155
-#> # … with 390 more rows
+#> # ℹ 390 more rows
 ```
 
 Because distances are symmetric, and for pairs formed by the same amino
@@ -144,7 +139,10 @@ aa_pairs
 #>  8 Ser   Ile  
 #>  9 Ser   Phe  
 #> 10 Ser   Tyr  
-#> # … with 180 more rows
+#> # ℹ 180 more rows
+```
+
+``` r
 
 # Grantham distance for the 190 unique amino acid pairs
 grantham_distance(x = aa_pairs$x, y = aa_pairs$y)
@@ -161,20 +159,19 @@ grantham_distance(x = aa_pairs$x, y = aa_pairs$y)
 #>  8 Ser   Ile     142
 #>  9 Ser   Phe     155
 #> 10 Ser   Tyr     144
-#> # … with 180 more rows
+#> # ℹ 180 more rows
 ```
 
-The Grantham distance *d*<sub>*i*, *j*</sub> for two amino acids *i* and
-*j* is:
+The Grantham distance $d_{i,j}$ for two amino acids $i$ and $j$ is:
 
-*d*<sub>*i*, *j*</sub> = *ρ*(*α*(*c*<sub>*i*</sub>−*c*<sub>*j*</sub>)<sup>2</sup>+*β*(*p*<sub>*i*</sub>−*p*<sub>*j*</sub>)<sup>2</sup>+*γ*(*v*<sub>*i*</sub>−*v*<sub>*j*</sub>)<sup>2</sup>)<sup>1/2</sup> .
+$$d_{i,j} = \rho (\alpha (c_i-c_j)^2+\beta (p_i-p_j)^2+ \gamma (v_i-v_j)^2)^{1/2}\ .$$
 
 The distance is based on three chemical properties of amino acid side
 chains:
 
--   composition (*c*)
--   polarity (*p*)
--   molecular volume (*v*)
+- composition ($c$)
+- polarity ($p$)
+- molecular volume ($v$)
 
 We provide a data set with these properties:
 
@@ -213,15 +210,18 @@ values you may use the function `grantham_equation()`.
 Other sources we’ve found in the R ecosystem that also provide code for
 calculation of the Grantham distance:
 
--   A GitHub Gist by Daniel E Cook provides the function
-    `calculate_grantham()`, see
-    [Fetch_Grantham.R](https://gist.github.com/danielecook/501f03650bca6a3db31ff3af2d413d2a).
--   The `{midasHLA}` package includes the unexported function
-    `distGrantham()` in
-    [utils.R](https://github.com/Genentech/midasHLA/blob/ec29296f9bfd7c4fae9e2040592b618e5f2a99a1/R/utils.R).
--   The `{HLAdivR}` package exports a data set with the Grantham
-    distances in the format of a matrix, see
-    [data.R](https://github.com/rbentham/HLAdivR/blob/master/R/data.R).
+- A GitHub Gist by Daniel E Cook provides the function
+  `calculate_grantham()`, see
+  [Fetch_Grantham.R](https://gist.github.com/danielecook/501f03650bca6a3db31ff3af2d413d2a).
+- The `{midasHLA}` package includes the unexported function
+  `distGrantham()` in
+  [utils.R](https://github.com/Genentech/midasHLA/blob/ec29296f9bfd7c4fae9e2040592b618e5f2a99a1/R/utils.R).
+- The `{HLAdivR}` package exports a data set with the Grantham distances
+  in the format of a matrix, see
+  [data.R](https://github.com/rbentham/HLAdivR/blob/master/R/data.R).
+- The Bioconductor package `{MSA2dist}` by Kristian K. Ullrich provides
+  the function
+  [`aastring2dist()`](https://www.bioconductor.org/packages/devel/bioc/vignettes/MSA2dist/inst/doc/MSA2dist.html#granthams-distance).
 
 ## Code of Conduct
 
