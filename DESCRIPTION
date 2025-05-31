@@ -1,7 +1,7 @@
 Package: grantham
 Type: Package
 Title: Calculate the Grantham Distance
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: c(
     person(given = "Ramiro", family = "Magno",
       email = "rmagno@pattern.institute",
@@ -17,7 +17,7 @@ Authors@R: c(
       comment = c(ORCID = "0000-0002-0454-9207")),
     person("University of Algarve", role = "fnd"),
     person("CINTESIS", role = "fnd"),
-    person("Pattern Institute", role = c("cph", "fnd"))
+    person("Pattern Institute", role = c("cph", "fnd"), comment = c(ROR = "04jrgd746"))
     )
 Description: A minimal set of routines to calculate the Grantham distance
     <doi:10.1126/science.185.4154.862>. The Grantham distance attempts to
@@ -30,8 +30,8 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
-Depends: R (>= 2.10)
-Imports: tibble, vctrs, dplyr
+Depends: R (>= 4.1.0)
+Imports: tibble, dplyr
 URL: https://www.pattern.institute/grantham/,
         https://github.com/patterninstitute/grantham
 BugReports: https://github.com/patterninstitute/grantham/issues
@@ -40,13 +40,14 @@ Language: en-US
 Config/Needs/website: rmarkdown, patterninstitute/chic
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2024-07-30 21:24:58 UTC; rmagno
-Author: Ramiro Magno [aut, cre] (<https://orcid.org/0000-0001-5226-3441>),
-  Isabel Duarte [aut] (<https://orcid.org/0000-0003-0060-2936>),
-  Ana-Teresa Maia [aut] (<https://orcid.org/0000-0002-0454-9207>),
+Packaged: 2025-05-31 21:45:30 UTC; rmagno
+Author: Ramiro Magno [aut, cre] (ORCID:
+    <https://orcid.org/0000-0001-5226-3441>),
+  Isabel Duarte [aut] (ORCID: <https://orcid.org/0000-0003-0060-2936>),
+  Ana-Teresa Maia [aut] (ORCID: <https://orcid.org/0000-0002-0454-9207>),
   University of Algarve [fnd],
   CINTESIS [fnd],
-  Pattern Institute [cph, fnd]
+  Pattern Institute [cph, fnd] (ROR: <https://ror.org/04jrgd746>)
 Maintainer: Ramiro Magno <rmagno@pattern.institute>
 Repository: CRAN
-Date/Publication: 2024-07-30 21:50:02 UTC
+Date/Publication: 2025-05-31 22:00:02 UTC

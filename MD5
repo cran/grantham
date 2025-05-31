@@ -1,7 +1,7 @@
-6174023cded40f586ac2d3af2eeac6f4 *DESCRIPTION
+af1ecffdb015455cf572ba8aa42bc348 *DESCRIPTION
 64b7c15e1bf6c360d7fc1229cfad4632 *LICENSE
 76da3a1879e573f76f136d7eae052a5c *NAMESPACE
-0cfb74c68b48e78211b2b54fddaf1e6b *NEWS.md
+f4156d824a522bcd3ebca44213bbc276 *NEWS.md
 8123a7785396569ab0cdacd20cc83362 *R/amino_acid_index.R
 0071c4b9204ab47f6aa2bbc8bf98eb14 *R/amino_acid_pairs.R
 6900fc0bd3f27ada89130b4ee0a8f972 *R/amino_acids.R
@@ -9,14 +9,15 @@
 4cd083a6d12c582bd70ebcfbab7f7caa *R/as_one_letter.R
 7c78f7e99dfa0e1f8bcd1925f422ab51 *R/as_three_letter.R
 02f96b408a75410f54dedc454548a9b2 *R/grantham-package.R
-0cc29facd9e969a12cbd84d3068c75b4 *R/grantham_distance.R
+ce25d6f5ee20448131761743d22baf78 *R/grantham_distance.R
 e88508c20c96e9ffdc4112edf219d882 *R/grantham_distances_matrix.R
 4239966b4a83ede5c4e77b0e52c0cb7d *R/ij2k.R
 e25fa57739b17638819385706209a388 *R/is_amino_acid.R
 b49074cb12e60eea72d4b0143b6cdd2e *R/sltm_k.R
 5ac3393788507849782825565a8c08e0 *R/sysdata.rda
-0a7ef1348a52a603e54bfce2010d4261 *README.md
-f61db891eb928123aba4412ca322f508 *build/partial.rdb
+db6ab22174907e41d6c46ef101696ff8 *R/vec_recycle_common.R
+41ba79e9c86ed15f82e9c95ff8bf14ae *README.md
+b52aabe9a2757fc86742763db9dafc9b *build/partial.rdb
 69fcaaa264e08312bf38656cfa622897 *data/amino_acids_properties.rda
 2b3d683d26570e3b26ac971bb4d08397 *data/grantham_distances_matrix.rda
 f29e0d3eaa5db71e39968fc42b18f27e *inst/WORDLIST
@@ -28,7 +29,7 @@ f1ee033aad77ee761d1e9b4f070b7bad *man/as_one_letter.Rd
 edb6ba6c574b7df7273924f789d10afe *man/figures/cintesis.svg
 044d63f19f4b8ca317d2c914aaf183d9 *man/figures/logo.svg
 2793b1b16c61970fb987a8cf371fa05b *man/figures/pi.svg
-d5fac99a9d2456149872c957e6cc8525 *man/grantham-package.Rd
+c157b2b1f5d587a4fd9c5d25024762ca *man/grantham-package.Rd
 57235f11b459b768b549b591f6a9fffa *man/grantham_distance.Rd
 3c490ac45d54414c3c5993df6d25e202 *man/grantham_distance_exact.Rd
 66e5698a8009202d45ddad484cf9df2f *man/grantham_distance_original.Rd
